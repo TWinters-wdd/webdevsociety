@@ -4,25 +4,32 @@ import Github from './Github.astro';
 const { member, active = false } = Astro.props;
 ---
 
-<li class="member-card w-full" data-member-active={active ? 'true' : 'false'}>
-  <img src={member.avatar_url} alt={member.login} class="avatar" />
+<li
+  class="member-card overflow-hidden"
+  data-member-active={active ? 'true' : 'false'}
+>
+  <img src={member.avatar_url} alt={member.login} class="w-full" />
   <div class="w-full min-w-0 text-left ml-1">
     <div class="font-bold text-lg">
       {member.name || <span class="text-disabled">(Not Provided)</span>}
     </div>
-    <div class="flex items-center gap-2 w-full">
+    <div class="flex items-center gap-2 w-full pb-2">
       <Github />
       <a href={member.html_url} class="truncate flex-1 min-w-0 block">
         {member.login}
       </a>
     </div>
-
-    {
-      member.last_event_at && (
-        <div>
-          Last Activity: {new Date(member.last_event_at).toLocaleDateString()}
-        </div>
-      )
-    }
   </div>
 </li>
+
+<style>
+  .member-card {
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+  }
+
+  .member-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+</style>
