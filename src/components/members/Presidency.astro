@@ -3,8 +3,8 @@ import members from '../../../members.json';
 import Officer from './Officer.astro';
 ---
 
-<h1 class="mx-4">Presidency</h1>
-<div id="tablet:presidency">
+<h1 class="mx-4 text-center">Presidency</h1>
+<div id="presidency">
   <div class="row">
     <Officer
       name="Alex Dombroski"
@@ -38,64 +38,13 @@ import Officer from './Officer.astro';
     />
   </div>
 </div>
-<div id="presidency-grid">
-  <div class="font-bold">Title</div>
-  <div class="font-bold">Name</div>
-  <div>President</div>
-  <div class="name-container">
-    <img
-      class="small avatar"
-      src="https://avatars.githubusercontent.com/u/145472045?v=4"
-      alt="Alex Dombroski"
-    />
-    <span class="name">Alex Dombroski</span>
-  </div>
-  <div>Vice President</div>
-  <div class="name-container">
-    <img
-      class="avatar small"
-      src="https://avatars.githubusercontent.com/u/46506971?v=4"
-      alt="Daniel Checketts"
-    />
-    <span class="name">Daniel Checketts</span>
-  </div>
-  <div>Officer</div>
-  <div>
-    <img
-      class="avatar small"
-      src="https://avatars.githubusercontent.com/u/235607494?v=4"
-      alt="Joshua Walker"
-    />
-    <span class="name">Joshua Walker</span>
-  </div>
-  <div>Officer</div>
-  <div class="name-container">
-    <img
-      class="avatar small"
-      src="https://avatars.githubusercontent.com/u/75548737?v=4"
-      alt="Samuel Pereira"
-    />
-    <span class="name">Samuel Pereira</span>
-  </div>
-  <div>Officer</div>
-  <div class="name-container">
-    <img
-      class="avatar small"
-      src="https://avatars.githubusercontent.com/u/145629950?v=4"
-      alt="Kian LaMer"
-    />
-    <span class="name">Kian LaMer</span>
-  </div>
-</div>
 
 <style>
   .row {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-  }
-  #tablet\:presidency {
-    display: none;
+    justify-content: space-evenly;
+    align-items: center;
   }
   #presidency-grid {
     border: 1px solid var(--primary-color);
@@ -117,6 +66,23 @@ import Officer from './Officer.astro';
     align-items: center;
     gap: 10px;
   }
+
+  .presidency {
+    background-color: var(--accent-color);
+    height: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .avatar {
+    height: 80px;
+    width: 80px;
+    border-radius: 1rem;
+  }
+
   @media screen and (min-width: 720px) {
     #tablet\:presidency {
       display: block;
