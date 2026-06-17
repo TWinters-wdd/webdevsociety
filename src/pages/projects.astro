@@ -1,18 +1,31 @@
 ---
+import ProjectCard from '../components/projects/ProjectCard.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 
 const baseUrl = import.meta.env.BASE_URL;
 
-const previousProjects = [
+const currentProjects = [
   {
-    title: '',
-    urls: [],
-    timeframe: '',
-    desc: '',
-    img: '',
-    alt: '',
+    title: 'Run the Undergrad',
+    urls: ['https://runtheundergrad.org'],
+    timeframe: 'September 2025 - Ongoing',
+    desc: '(describe the running project here)',
+    img: 'undergrad-site.jpeg',
+    alt: "A screenshot of Undergrad's home page",
     contributers: [],
   },
+  {
+    title: 'Society Site',
+    urls: ['https://web-design-development-society.github.io/webdevsociety/'],
+    timeframe: 'September 2024 - Ongoing',
+    desc: 'We will finish the society page, and add projects and members as semesters go on. (We need to update this)',
+    img: 'society-site.jpeg',
+    alt: "A screenshot of the Web Society's Site",
+    contributers: [],
+  },
+];
+
+const previousProjects = [
   {
     title: "Brother Shoaf's Site",
     urls: ['https://amhart02.github.io/musicportfolio/'],
@@ -30,17 +43,9 @@ const previousProjects = [
     ],
     timeframe: 'October 2024',
     desc: 'Halloween Sites were created in preparation for halloween and to show to the high schoolers in Rexburg',
-    img: 'halloween-sites.jpg',
+    img: 'halloween-homepage.jpeg',
     alt: 'showing off halloween sites in high school',
     contributers: ['Alex Dombroski', 'Ellie Talbot', 'Amitai Finlayson'],
-  },
-];
-
-const nextProjects = [
-  {
-    title: 'Society Page',
-    desc: 'We will finish the society page, and add projects and members as semesters go on.',
-    timeframe: 'Sept 2024 - ongoing',
   },
 ];
 ---
@@ -58,51 +63,13 @@ const nextProjects = [
     </div>
 
     <div id="projects-container" class="centered">
-      <section class="previous-projects">
+      <section>
+        <h2>Current Projects</h2>
+        {currentProjects.map((project) => <ProjectCard project={project} />)}
+      </section>
+      <section>
         <h2>Past Projects</h2>
-        {
-          previousProjects.map((project) => (
-            <article>
-              <div class="project-content">
-                <h3>{project.title}</h3>
-                {project.timeframe && <h4>{project.timeframe}</h4>}
-                <div class="description">
-                  {project.desc && <p class="desc">{project.desc}</p>}
-                  {project.contributers.length > 0 && (
-                    <>
-                      <h5>Contributors</h5>
-                      <p>{project.contributers.join(', ')}</p>
-                    </>
-                  )}
-                  {project.urls.length > 0 && (
-                    <>
-                      <h5>Links</h5>
-                      <ul>
-                        {project.urls.map((url) => (
-                          <li>
-                            <a
-                              href={url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {url}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </div>
-              </div>
-              {project.img && (
-                <img
-                  src={`${baseUrl}/images/projects/project-images/${project.img}`}
-                  alt={project.alt}
-                />
-              )}
-            </article>
-          ))
-        }
+        {previousProjects.map((project) => <ProjectCard project={project} />)}
       </section>
     </div>
   </main>
@@ -125,77 +92,15 @@ const nextProjects = [
     padding: 0 30px;
   }
 
-  .previous-projects h2 {
+  #projects-container h2 {
     font-size: 2.5rem;
     margin-top: 50px;
     text-align: center;
   }
 
-  .previous-projects article {
-    gap: 20px;
-    margin: 40px 0;
-  }
-
-  .previous-projects h3 {
-    font-size: 1.7rem;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  .previous-projects h4 {
-    margin: 0.3rem 0;
-    font-weight: 100;
-    font-style: italic;
-    color: #888888;
-    font-size: 1.2rem;
-  }
-
-  .previous-projects h5 {
-    font-size: 1rem;
-    margin-bottom: 0;
-  }
-
-  .previous-projects .project-content {
-    align-content: top;
-  }
-
-  .previous-projects img {
-    width: 100%;
-    border: 2px solid #d4d4d4;
-    border-radius: 10px;
-  }
-
-  .previous-projects h5 + p,
-  .previous-projects h5 + ul {
-    margin-top: 0.5rem;
-    padding-left: 0;
-  }
-
-  .previous-projects a {
-    word-break: break-all;
-  }
-
-  .previous-projects li {
-    list-style-type: none;
-  }
-
-  @media screen and (min-width: 840px) {
-    .previous-projects article {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
   @media screen and (min-width: 1260px) {
     #projects-container {
       max-width: 1130px;
-    }
-    .previous-projects .description {
-      padding-left: 40px;
-    }
-    .previous-projects h5 + p,
-    .previous-projects h5 + ul {
-      padding-left: 20px;
     }
   }
 </style>
